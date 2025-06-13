@@ -1,0 +1,74 @@
+<nav class="d-flex justify-content-end p-2 bg-color border-bottom">
+  <button type="button" (click)="back()" class="btn btn-primary">Logout</button>
+</nav>
+<div style="display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 10px 1%;">
+  
+
+  <input type="text" id="filter" name="filter" class="form-control" [(ngModel)]="filterstring" (input)="filterData()" placeholder="Filter by name" style="width: 200px;">
+
+
+  <div style="display: flex; gap: 10px;">
+   <button class="btn btn-info" (click)="filter()">Filter</button>
+    <button class="btn btn-success" (click)="adddata()">Add Data</button>
+  </div>
+</div>
+
+<div class="mat-elevation-z8" *ngIf="excelData.length > 0">
+  <table mat-table [dataSource]="dataSource" class="mat-table" matSort>
+
+    <ng-container matColumnDef="ward">
+      <th mat-header-cell *matHeaderCellDef>WARD</th>
+      <td mat-cell *matCellDef="let row">{{ row.ward }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="lbody">
+      <th mat-header-cell *matHeaderCellDef>LOCAL BODY</th>
+      <td mat-cell *matCellDef="let row">{{ row.lbody }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>NAME</th>
+      <td mat-cell *matCellDef="let row">{{ row.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="gname">
+      <th mat-header-cell *matHeaderCellDef>GUARDIAN NAME</th>
+      <td mat-cell *matCellDef="let row">{{ row.gname }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="gage">
+      <th mat-header-cell *matHeaderCellDef>Gender / Age</th>
+      <td mat-cell *matCellDef="let row">{{ row.gage }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="station">
+      <th mat-header-cell *matHeaderCellDef>STATION</th>
+      <td mat-cell *matCellDef="let row">{{ row.station }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="idno">
+      <th mat-header-cell *matHeaderCellDef>ID CARD NUMBER</th>
+      <td mat-cell *matCellDef="let row">{{ row.idno }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="hno">
+      <th mat-header-cell *matHeaderCellDef>HOUSE NO</th>
+      <td mat-cell *matCellDef="let row">{{ row.hno }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="hname">
+      <th mat-header-cell *matHeaderCellDef>HOUSE NAME</th>
+      <td mat-cell *matCellDef="let row">{{ row.hname }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="viewDetails(row)" style="cursor: pointer;"></tr>
+
+  </table>
+
+  <mat-paginator [pageSize]="10" showFirstLastButtons></mat-paginator>
+</div>
+
+<p *ngIf="excelData.length === 0" style="text-align: center;font-size: 30px;font-style: italic;" class="text-danger">
+  .........No data is stored, please add it......................
+</p>

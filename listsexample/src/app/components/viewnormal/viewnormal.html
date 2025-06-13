@@ -1,0 +1,23 @@
+<!-- view-data.component.html -->
+<table border="1" style="width: 100%; border-collapse: collapse;">
+  <thead style="text-align: center;">
+    <tr>
+      <th>Name</th>
+      <th>Guardian Name</th>
+      <th>New House No.</th>
+      <th>House Name</th>
+      <th>Gender / Age</th>
+      <th>ID Card No.</th>
+    </tr>
+  </thead>
+  <tbody style="text-align: center;">
+    <tr *ngFor="let row of excelData" (click)="viewDetails(row)" style="cursor: pointer;"class="clickable-row">
+      <td>{{ row.name }}</td>
+      <td>{{ row.gname }}</td>
+      <td>{{ row.hno }}</td>
+      <td>{{ row.hname }}</td>
+      <td>{{ row.gage }}</td>
+      <td>{{ row.idno }}</td>
+    </tr>
+  </tbody>
+</table>
