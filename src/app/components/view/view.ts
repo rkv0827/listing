@@ -90,6 +90,8 @@ applyFilters(): void {
       typeof row.name === 'string' && row.name.toLowerCase().includes(lowerFilter)
     );
   }
+  
+  this.dataSource.data = this.filteredData ;
 }
 
 
@@ -125,6 +127,7 @@ applyFilters(): void {
       row.name?.toLowerCase().includes(filterValue)
     );
   }
+ this.dataSource.data = this.filteredData ; 
 }
   viewDetails(row: any) {
   const id = row['idno']; 
